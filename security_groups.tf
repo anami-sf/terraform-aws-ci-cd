@@ -30,7 +30,7 @@ resource "aws_security_group_rule" "allow_alb_all_outbound" {
   security_group_id = aws_security_group.alb.id
   type              = "egress"
 
-  protocol     = "-1"
+  protocol    = "-1"
   from_port   = 0
   to_port     = 0
   cidr_blocks = ["0.0.0.0/0"]
