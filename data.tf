@@ -19,10 +19,10 @@ data "aws_vpc" "default_vpc" {
 }
 
 data "aws_subnets" "default_subnet_ids" {
-    filter {
-        name = "vpc-id"
-        values = [data.aws_vpc.default_vpc.id]
-    }
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.default_vpc.id]
+  }
 }
 
 
