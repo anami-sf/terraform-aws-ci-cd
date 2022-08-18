@@ -9,7 +9,7 @@ resource "aws_lb" "web_app_lb" {
 resource "aws_lb_target_group" "ec2_instances" {
   name     = "ec2-instances"
   protocol = "HTTP"
-  port     = "8080"
+  port     = "80"
   vpc_id   = data.aws_vpc.default_vpc.id
 
   health_check {
@@ -25,7 +25,7 @@ resource "aws_lb_target_group" "ec2_instances" {
 
 resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.web_app_lb.arn
-  port              = 8080
+  port              = 80
   protocol          = "HTTP"
 
   default_action {
@@ -43,13 +43,13 @@ resource "aws_lb_listener" "http" {
 resource "aws_lb_target_group_attachment" "instance_1" {
   target_group_arn = aws_lb_target_group.ec2_instances.arn
   target_id        = aws_instance.instance_1.id
-  port             = 8080
+  port             = 80
 }
 
 resource "aws_lb_target_group_attachment" "instance_2" {
   target_group_arn = aws_lb_target_group.ec2_instances.arn
   target_id        = aws_instance.instance_2.id
-  port             = 8080
+  port             = 80
 }
 
 resource "aws_lb_listener_rule" "instances" {
